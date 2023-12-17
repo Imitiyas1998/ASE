@@ -1,0 +1,183 @@
+Cal button code
+
+private void button1_Click(object sender, EventArgs e)
+        {
+            int val1 = (int)numericUpDown1.Value;
+            int val2 = (int)numericUpDown2.Value;
+            if (comboBox1.SelectedIndex == 0)
+            {
+                int sum = val1 + val2;
+                label1.Text = sum.ToString();
+            }
+            if (comboBox1.SelectedIndex == 1)
+            {
+                int sub = val1 - val2;
+                label1.Text = sub.ToString();
+            }
+            if (comboBox1.SelectedIndex == 2)
+            {
+                int mul = val1 * val2;
+                label1.Text = mul.ToString();
+            }
+            if (comboBox1.SelectedIndex == 3)
+            {
+                int div = val1 / val2;
+                label1.Text = div.ToString();
+            }
+        }
+    }
+
+code for hide and open form2
+
+ private void button2_Click(object sender, EventArgs e)
+        {
+            Form2 form2 = new Form2();
+            form2.Show();
+            this.Hide();
+        }
+
+
+SUBMIT BUTTON FORM CODE FOR VALIDATION
+
+ private void button2_Click(object sender, EventArgs e)
+{
+    OpenFileDialog open = new OpenFileDialog();
+    open.Filter = "[image files(*.jpg;*.png;*.jpeg;*.bmp)|*.jpg;*.gif;*.jpeg;*.bmp]";
+    if (open.ShowDialog() == DialogResult.OK)
+    {
+        textBox2.Text = open.FileName;
+        pictureBox2.Image = new Bitmap(open.FileName);
+    }
+}
+
+  private void button2_Click(object sender, EventArgs e)
+  {
+      string firstname = textBox1.Text;
+      string lastname = textBox2.Text;
+      string username = textBox3.Text;
+      string password = textBox4.Text;
+      string confirmpassword = textBox5.Text;
+
+      if (string.IsNullOrEmpty(password))
+      {
+          MessageBox.Show("Password should not be empty!", "Password Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      else if (password == confirmpassword)
+      {
+          MessageBox.Show("Password validated", "Password validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+      else
+      {
+          MessageBox.Show("Password Validation failed", "Password validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+
+      string email = textBox6.Text;
+      if (string.IsNullOrEmpty(email))
+      {
+          MessageBox.Show("Email is Empty !", "Email Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      else if (!IsValidEmail(email))
+      {
+          MessageBox.Show("Invalid Email !", "Email Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+      }
+      else
+      {
+          MessageBox.Show("valid Email !", "Email Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+      }
+
+      string mobile = textBox7.Text;
+
+      string selectedGenderVal = GetValueGender();
+
+      DateTime birthdate = dateTimePicker1.Value;
+      DateTime currentdate = DateTime.Now;
+      string dateString = birthdate.ToString("yyyy-mm-dd");
+
+      int age = currentdate.Year - birthdate.Year;
+      string agestring = age.ToString();
+
+      string SelectedValueCourse = comboBox1.Text;
+
+      string selectedNatVal = GetValueNationality();
+
+      MessageBox.Show($"Firstname is {firstname}" +
+          $"Lastname is {lastname}" +
+          $"Username is {username}" +
+          $"Email is {email}" +
+          $"Mobile No is {mobile}" +
+          $"\n Gender is {selectedGenderVal}\n Date of Birth is {dateString}" +
+          $"\n Age is {agestring}\n Course is {SelectedValueCourse}" +
+          $"\n Course is {SelectedValueCourse}" +
+          $"\n Natinality is {selectedNatVal}");
+  }
+
+  private bool IsValidEmail(String email)
+  {
+      try
+      {
+          var mailaddress = new System.Net.Mail.MailAddress(email);
+          return true;
+      }
+      catch
+      {
+          return false;
+      }
+  }
+
+  private string GetValueGender()
+  {
+      if (radioButton1.Checked)
+      {
+          return radioButton1.Text;
+      }
+
+      else if (radioButton2.Checked)
+      {
+          return radioButton2.Text;
+      }
+      else
+      {
+          return null;
+      }
+  }
+
+  private string GetValueNationality()
+  {
+      if (radioButton3.Checked)
+      {
+          return radioButton3.Text;
+      }
+
+      else if (radioButton4.Checked)
+      {
+          return radioButton4.Text;
+      }
+      else
+      {
+          return null;
+      }
+  }
+
+image and pdf
+
+private void button1_Click(object sender, EventArgs e)
+{
+    OpenFileDialog open = new OpenFileDialog();
+    open.Filter = "[image(*.pdf)|*.pdf;]";
+
+    if (open.ShowDialog() == DialogResult.OK)
+    {
+        label1.Text = open.FileName;
+    }
+}
+
+private void button2_Click(object sender, EventArgs e)
+{
+    OpenFileDialog open = new OpenFileDialog();
+    open.Filter = "[image files(*.jpg;*.png;*.jpeg;*.bmp)|*.jpg;*.gif;*.jpeg;*.bmp]";
+    if (open.ShowDialog() == DialogResult.OK)
+    {
+        textBox2.Text = open.FileName;
+        pictureBox2.Image = new Bitmap(open.FileName);
+    }
+}
